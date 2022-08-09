@@ -140,6 +140,4 @@ export interface PanelProps extends Omit<OcBaseProps<HTMLElement>, 'title'> {
      * @default HTMLBodyElement
      */
     parent?: HTMLDivElement | HTMLBodyElement;
-
-    noPadding?: Boolean;
 }
