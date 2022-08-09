@@ -464,7 +464,6 @@ Small.args = {
 
 Medium.args = {
     ...panelArgs,
-    // noPadding: true,
     size: PanelSize.medium,
 };
 
