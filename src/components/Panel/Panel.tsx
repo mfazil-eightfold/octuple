@@ -52,6 +52,7 @@ export const Panel = React.forwardRef<PanelRef, PanelProps>(
             footerClassNames,
             closeButtonProps,
             autoFocus = true,
+            noPadding = false,
             ...rest
         },
         ref
@@ -71,6 +72,7 @@ export const Panel = React.forwardRef<PanelRef, PanelProps>(
         const panelClasses: string = mergeClasses([
             styles.panel,
             panelClassNames,
+            { [styles.noPadding]: noPadding },
             { [styles.right]: placement === 'right' },
             { [styles.left]: placement === 'left' },
             { [styles.bottom]: placement === 'bottom' },
@@ -112,15 +114,15 @@ export const Panel = React.forwardRef<PanelRef, PanelProps>(
             <div className={headerClasses}>
                 <div>{title}</div>
                 <span className={styles.headerButtons}>
-                    {actionButtonThreeProps && (
-                        <NeutralButton {...actionButtonThreeProps} />
-                    )}
-                    {actionButtonTwoProps && (
-                        <NeutralButton {...actionButtonTwoProps} />
-                    )}
-                    {actionButtonOneProps && (
-                        <NeutralButton {...actionButtonOneProps} />
-                    )}
+                    {/* {actionButtonThreeProps && ( */}
+                    <NeutralButton {...actionButtonThreeProps} />
+                    {/* )} */}
+                    {/* {actionButtonTwoProps && ( */}
+                    <NeutralButton {...actionButtonTwoProps} />
+                    {/* )} */}
+                    {/* {actionButtonOneProps && ( */}
+                    <NeutralButton {...actionButtonOneProps} />
+                    {/* )} */}
                     {closable && (
                         <NeutralButton
                             iconProps={{ path: closeIcon }}
@@ -132,6 +134,8 @@ export const Panel = React.forwardRef<PanelRef, PanelProps>(
                 </span>
             </div>
         );
+
+        const getCustomHeader = () => <CustomHeader />;
 
         const getBody = (): JSX.Element => (
             <div className={bodyClasses}>{children}</div>
@@ -206,6 +210,7 @@ export const Panel = React.forwardRef<PanelRef, PanelProps>(
                         style={getPanelStyle()}
                     >
                         {getHeader()}
+                        {/* {getCustomHeader()} */}
                         {getBody()}
                         {getFooter()}
                     </div>
@@ -216,3 +221,7 @@ export const Panel = React.forwardRef<PanelRef, PanelProps>(
         return <Portal getContainer={() => parent}>{getPanel()}</Portal>;
     }
 );
+
+const CustomHeader = () => {
+    return <div className={styles['custom-header']}>hello</div>;
+};
